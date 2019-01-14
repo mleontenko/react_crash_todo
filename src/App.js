@@ -36,12 +36,11 @@ class App extends Component {
 
   // Add Todo
   addTodo = (title) => {
-    const newTodo = {
-      id: uuid.v4(),
+    Axios.post('https://jsonplaceholder.typicode.com/todos', {
       title: title,
-      copmpleted: false
-    }
-    this.setState({ todos: [...this.state.todos, newTodo] });
+      completed: false
+    })
+    .then(res => this.setState({todos: [...this.state.todos, res.data] }));
   }
 
   render() {
